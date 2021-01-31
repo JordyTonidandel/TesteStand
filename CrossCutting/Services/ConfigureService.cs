@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TesteStand.Models.Interfaces.Services;
+using TesteStand.Interfaces.Services;
 using TesteStand.Services;
 
 namespace TesteStand.CrossCutting.Services

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using TesteStand.Models;
-using TesteStand.Models.Interfaces.Services;
+using TesteStand.Interfaces.Services;
 
 namespace TesteStand.Services
 {

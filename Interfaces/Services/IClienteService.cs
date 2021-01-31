@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using TesteStand.Models;
 
-namespace TesteStand.Models.Interfaces.Services
+namespace TesteStand.Interfaces.Services
 {
     public interface IClienteService
     {
