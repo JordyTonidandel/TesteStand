@@ -1,0 +1,111 @@
+﻿@model IEnumerable<TesteStand.Models.ClienteModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <button asp-action="Create">Novo Cliente</button>
+</p>
+
+
+<form>
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Empresa</legend>
+        <div class="d-flex justify-content-between p-1 bg-white text-dark">
+            <div>
+                <label class="control-label input-label" for="startTime">Razão Social :</label>
+                <input type="text" class="datetime" id="startTime" name="startTime" placeholder="" />
+            </div>
+            <div>
+                <label class="control-label input-label" for="startTime">CNPJ :</label>
+                <input type="text" class="datetime" id="startTime" name="startTime" placeholder="" />
+            </div>
+            @*<div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Ativo</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">Inativo</label>
+                </div>*@
+            <button type="submit" class="btn">Pesquisar</button>
+        </div>
+
+    </fieldset>
+
+    <table class="table">
+        Cliente
+        <thead>
+            <tr>
+                <th>
+                    Razão Social
+                </th>
+                <th>
+                    CNPJ
+                </th>
+                <th>
+                    Data de Fundação
+                </th>
+                <th>
+                    Capital
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Ação
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Razao_social)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cnpj)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Data_fundacao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Capital)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status_cliente)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
+
+<style>
+    fieldset.scheduler-border {
+        border: 1px groove #ddd !important;
+        padding: 0 1.4em 1.4em 1.4em !important;
+        margin: 0 0 1.5em 0 !important;
+        -webkit-box-shadow: 0px 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px 0px #000;
+    }
+
+    legend.scheduler-border {
+        width: inherit; /* Or auto */
+        padding: 0 10px; /* To give a bit of padding on the left and right */
+        border-bottom: none;
+    }
+
+    .btn {
+        box-shadow: 6px 6px;
+    }
+</style>

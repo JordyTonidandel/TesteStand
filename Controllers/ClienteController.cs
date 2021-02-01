@@ -18,14 +18,13 @@ namespace TesteStand.Controllers
             return View(await _clienteService.ListaCliente(1, 10));
         }
 
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(Models.ClienteModel clienteModel)
         {
+            if (clienteModel != null)
+            {
+                await _clienteService.CadastraCliente(clienteModel);
+            }
             return View("CadastraCliente");
         }
-
-        //public async IActionResult Create(Models.ClienteModel clienteModel)
-        //{
-        //    return View(await _clienteService.CadastraCliente(clienteModel));
-        //}
     }
 }
