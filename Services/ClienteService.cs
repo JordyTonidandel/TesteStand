@@ -1,15 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using TesteStand.Models;
+using TesteStand.Interfaces.Repository;
 using TesteStand.Interfaces.Services;
+using TesteStand.Models;
+using TesteStand.Validator;
 
 namespace TesteStand.Services
 {
     public class ClienteService : IClienteService
     {
-        public Task<bool> CadastraCliente(ClienteModel clienteModel)
+        private readonly IClienteRepository _clienteRepository;
+        public ClienteService(IClienteRepository clienteRepository)
         {
-            throw new System.NotImplementedException();
+            _clienteRepository = clienteRepository;
+        }
+
+        public async Task<bool> CadastraCliente(ClienteModel clienteModel)
+        {
+            new ClienteValidator();
+
+            return await _clienteRepository.CadastraCliente(clienteModel);
         }
 
         public Task<bool> EditaCliente(int Id, ClienteModel clienteModel)
@@ -22,9 +32,9 @@ namespace TesteStand.Services
             throw new System.NotImplementedException();
         }
 
-        public Task<List<ClienteModel>> ListaCliente(int pagina, int totalPagina)
+        public async Task<List<ClienteModel>> ListaCliente(int pagina, int totalPagina)
         {
-            throw new System.NotImplementedException();
+            return await _clienteRepository.ListaCliente(pagina, totalPagina);
         }
     }
 }

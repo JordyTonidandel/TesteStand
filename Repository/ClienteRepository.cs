@@ -17,9 +17,12 @@ namespace TesteStand.Repository
             _empresaContext = empresaContext;
         }
 
-        public Task<bool> CadastraCliente(ClienteModel clienteModel)
+        public async Task<bool> CadastraCliente(ClienteModel clienteModel)
         {
-            throw new System.NotImplementedException();
+            _empresaContext.Add(clienteModel);
+            await _empresaContext.SaveChangesAsync();
+
+            return true;
         }
 
         public Task<bool> EditaCliente(int Id, ClienteModel clienteModel)
