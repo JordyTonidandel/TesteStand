@@ -18,6 +18,11 @@ namespace TesteStand.Controllers
             return View(await _clienteService.ListaCliente(1, 10));
         }
 
+        //public async Task<IActionResult> Buscar()
+        //{
+        //    return View(await _clienteService.ListaCliente(1, 10));
+        //}
+
         public async Task<IActionResult> Create(Models.ClienteModel clienteModel)
         {
             if (clienteModel != null)

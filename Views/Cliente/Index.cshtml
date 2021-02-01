@@ -1,0 +1,127 @@
+﻿@model IEnumerable<TesteStand.Models.ClienteModel>
+
+    <div class="container">
+        <div class="col-sm-12">
+            <div class="row">
+                <button type="submit" class="btn">Novo cliente</button>
+            </div>
+        </div>
+
+
+        <br /><br />
+
+        <div class="col-sm-12">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border"><span>Empresa</span></legend>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label class="control-label input-label" for="search-razao-social">Razão Social:</label>
+                            @Html.TextBox("SearchString", "", new { @id = "search-razao-social", @class = "form-control input" })
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="control-label input-label" for="search-cnpj">CNPJ:</label>
+                            @Html.TextBox("SearchString", "", new { @id = "search-cnpj", @class = "form-control input" })
+                        </div>
+                        <div class="col-md-1" style="top:35px">
+                            @Html.RadioButton("Status", new { @id = "ativo" })
+                            <label class="control-label input-label" for="ativo">Ativo</label>
+                        </div>
+                        <div class="col-md-2" style="top:35px">
+                            @Html.RadioButton("Status", new { @id = "inativo" })
+                            <label class="control-label input-label" for="inativo">Inativo</label>
+                        </div>
+
+                        <div class="col-md-1" style="top:55px;right:35px">
+                            <button type="submit" class="btn">Pesquisar</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border"><span>Clientes</span></legend>
+            <div class="form-group">
+                <form>
+                    <table class="table">
+                        Cliente
+                        <thead>
+                            <tr>
+                                <th>
+                                    Razão Social
+                                </th>
+                                <th>
+                                    CNPJ
+                                </th>
+                                <th>
+                                    Data de Fundação
+                                </th>
+                                <th>
+                                    Capital
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                    Ação
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Razao_social)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Cnpj)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Data_fundacao)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Capital)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status_cliente)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </fieldset>
+    </div>
+
+    <style>
+        fieldset.scheduler-border {
+            border: 1px groove #ddd !important;
+            padding: 0 1.4em 1.4em 1.4em !important;
+            margin: 0 0 1.5em 0 !important;
+            -webkit-box-shadow: 0px 0px 0px 0px #000;
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        legend.scheduler-border {
+            width: inherit; /* Or auto */
+            padding: 0 10px; /* To give a bit of padding on the left and right */
+            border-bottom: none;
+        }
+
+        span {
+            font-size: 18px;
+        }
+
+        .btn {
+            box-shadow: 6px 6px;
+        }
+    </style>
