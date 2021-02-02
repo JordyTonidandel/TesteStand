@@ -8,56 +8,58 @@
 
 <h4>ClienteModel</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CadastraCliente">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Razao_social" class="control-label"></label>
-                <input asp-for="Razao_social" class="form-control" />
-                <span asp-validation-for="Razao_social" class="text-danger"></span>
+<div class="col-sm-12">
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border"><span>Empresa</span></legend>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-5">
+                    <label class="control-label input-label" for="search-razao-social">Razão Social:</label>
+                    @Html.TextBox("SearchString", "", new { @id = "search-razao-social", @class = "form-control input" })
+                </div>
+
+                <div class="col-md-3">
+                    <label class="control-label input-label" for="search-cnpj">CNPJ:</label>
+                    @Html.TextBox("SearchString", "", new { @id = "search-cnpj", @class = "form-control input" })
+                </div>
+
+                <div class="col-md-3">
+                    <label class="control-label input-label" for="search-cnpj">Data de Fundação:</label>
+                    @Html.TextBox("SearchString", "", new { @id = "search-cnpj", @class = "form-control input" })
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Cnpj" class="control-label"></label>
-                <input asp-for="Cnpj" class="form-control" />
-                <span asp-validation-for="Cnpj" class="text-danger"></span>
+            <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy">
+                <input class="form-control" type="text" readonly />
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Data_fundacao" class="control-label"></label>
-                <input asp-for="Data_fundacao" class="form-control" />
-                <span asp-validation-for="Data_fundacao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Capital" class="control-label"></label>
-                <input asp-for="Capital" class="form-control" />
-                <span asp-validation-for="Capital" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Quarentena" /> @Html.DisplayNameFor(model => model.Quarentena)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Status_cliente" /> @Html.DisplayNameFor(model => model.Status_cliente)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Classificacao" class="control-label"></label>
-                <input asp-for="Classificacao" class="form-control" />
-                <span asp-validation-for="Classificacao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+    </fieldset>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <style>
+        #datepicker {
+            width: 180px;
+            margin: 0 20px 20px 20px;
+        }
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+            #datepicker > span:hover {
+                cursor: pointer;
+            }
+    </style>
+
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                autoclose: true,
+                todayHighlight: true
+            }).datepicker('update', new Date());
+        });
+
+    </script>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
