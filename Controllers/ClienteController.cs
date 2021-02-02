@@ -23,12 +23,12 @@ namespace TesteStand.Controllers
         //    return View(await _clienteService.ListaCliente(1, 10));
         //}
 
-        public async Task<IActionResult> Create(Models.ClienteModel clienteModel)
+        public IActionResult Cadastra()
         {
-            if (clienteModel != null)
-            {
-                await _clienteService.CadastraCliente(clienteModel);
-            }
+            //if (clienteModel != null)
+            //{
+            //    await _clienteService.CadastraCliente(clienteModel);
+            //}
             return View("CadastraCliente");
         }
     }
