@@ -19,7 +19,7 @@
 
                 <div class="col-md-3">
                     <label class="control-label input-label" for="search-cnpj">CNPJ:</label>
-                    @Html.TextBox("SearchString", "", new { @id = "search-cnpj", @class = "form-control input" })
+                    @Html.TextBox("SearchString", "", new { @id = "CNPJ", @class = "form-control input", @type = "text", @autocomplete = "off", @maxlength = "18" })
                 </div>
                 <div class="col-md-1" style="top:35px">
                     @Html.RadioButton("Status", new { @id = "ativo" })
@@ -65,16 +65,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
                         @foreach (var item in Model)
                         {
                             var active = !item.Status_cliente ? "Ativo" : "Inativo";
                             var capital = string.Format("{0:C}", item.Capital);
+                            var cnpj = Convert.ToUInt64(item.Cnpj).ToString(@"00\.000\.000\/0000\-00");
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Razao_social)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Cnpj)
+                                    @Html.DisplayFor(modelItem => cnpj)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Data_fundacao)
@@ -109,6 +111,14 @@
         </div>
     </fieldset>
 </div>
+
+<script>
+    document.getElementById('CNPJ').addEventListener('input', function (e) {
+        var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,3})(\d{0,3})(\d{0,4})(\d{0,2})/);
+        e.target.value = !x[2] ? x[1] : x[1] + '.' + x[2] + '.' + x[3] + '/' + x[4] + (x[5] ? '-' + x[5] : '');
+    });
+</script>
+
 
 <style>
     fieldset.scheduler-border {
