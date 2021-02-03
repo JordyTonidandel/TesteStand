@@ -12,7 +12,7 @@ namespace TesteStand.Validator
 
             RuleFor(prop => prop.Capital).GreaterThan(0).WithMessage("O capital deve ser maior que 0.");
 
-            RuleFor(prop => prop.Cnpj).NotNull().WithMessage("O CNPJ deve ser especificado.").Must(ValidarCnpj.IsCnpj);
+            RuleFor(prop => prop.Cnpj).NotNull().Must(ValidarCnpj.IsCnpj).WithMessage("O CNPJ deve ser especificado.");
         }
     }
 }

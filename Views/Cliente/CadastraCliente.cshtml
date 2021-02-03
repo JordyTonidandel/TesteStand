@@ -1,19 +1,11 @@
-﻿@model TesteStand.Models.ClienteModel
-
-@{
-    ViewData["Title"] = "CadastraCliente";
-}
-
-<h1>CadastraCliente</h1>
-
-<h4>ClienteModel</h4>
-<hr />
+﻿
+<label class="requiredlabel control-label input-label" for="search-razao-social">* Campos Obrigatórios</label>
 <div class="col-sm-12">
     <fieldset class="scheduler-border">
-        <legend class="scheduler-border"><span>Empresa</span></legend>
+        <legend class="scheduler-border"><span>Cadastrar / Editar</span></legend>
         <div class="form-group">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <label class="control-label input-label" for="search-razao-social">Razão Social:</label>
                     @Html.TextBox("SearchString", "", new { @id = "search-razao-social", @class = "form-control input" })
                 </div>
@@ -25,13 +17,30 @@
 
                 <div class="col-md-3">
                     <label class="control-label input-label" for="search-cnpj">Data de Fundação:</label>
-                    @Html.TextBox("SearchString", "", new { @id = "search-cnpj", @class = "form-control input" })
+                    @Html.TextBox("SearchString", "", new { @id = "search-data-fundacao", @class = "form-control input", @type = "date" })
                 </div>
             </div>
-            <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy">
-                <input class="form-control" type="text" readonly />
-                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            <div class="row" style="padding-top:20px">
+                <div class="col-md-3">
+                    <label class="control-label input-label" for="search-cnpj">R$ Capital:</label>
+                    @Html.TextBox("SearchString", "", new { @id = "search-capital", @class = "form-control input" })
+                </div>
+                <div class="col-md-1" style="top:35px; left:50px">
+                    @Html.RadioButton("Status", new { @id = "ativo" })
+                    <label class="control-label input-label" for="ativo">Ativo</label>
+                </div>
+                <div class="col-md-2" style="top:35px; left:50px ">
+                    @Html.RadioButton("Status", new { @id = "inativo" })
+                    <label class="control-label input-label" for="inativo">Inativo</label>
+                </div>
             </div>
+            <div class="row" style="padding-top:20px">
+                <div class="col-md-1" style="top:15px">
+                    <button type="submit" class="btn">Cadastrar</button>
+                </div>
+            </div>
+
+
         </div>
     </fieldset>
 
@@ -40,25 +49,34 @@
     </div>
 
     <style>
-        #datepicker {
-            width: 180px;
-            margin: 0 20px 20px 20px;
+        fieldset.scheduler-border {
+            border: 1px groove #ddd !important;
+            padding: 0 1.4em 1.4em 1.4em !important;
+            margin: 0 0 1.5em 0 !important;
+            -webkit-box-shadow: 0px 0px 0px 0px #000;
+            box-shadow: 0px 0px 0px 0px #000;
         }
 
-            #datepicker > span:hover {
-                cursor: pointer;
-            }
+        legend.scheduler-border {
+            width: inherit; /* Or auto */
+            padding: 0 10px; /* To give a bit of padding on the left and right */
+            border-bottom: none;
+        }
+
+        span {
+            font-size: 18px;
+        }
+
+        .btn {
+            box-shadow: 6px 6px;
+        }
+
+        .requiredlabel {
+            padding-left: 58em;
+            margin-bottom:0;
+           
+        }
     </style>
-
-    <script>
-        $(function () {
-            $("#datepicker").datepicker({
-                autoclose: true,
-                todayHighlight: true
-            }).datepicker('update', new Date());
-        });
-
-    </script>
 
     @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
